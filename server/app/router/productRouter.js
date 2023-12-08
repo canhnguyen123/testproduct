@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const checkToken=require('../middleware/checkToken');
+const requestProduct=require('../validete/productValidate');
+const routerProduct=require('../controller/productController');
+router.get('/', routerProduct.list);
+router.post('/add',checkToken,requestProduct.validate,routerProduct.add);
+router.put('/update/:product_id', checkToken,requestProduct.validate,routerProduct.update);
+router.delete('/delete/:product_id',checkToken, routerProduct.deleteId);
+module.exports = router;
